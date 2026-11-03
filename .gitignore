@@ -1,0 +1,19 @@
+# Оригиналы фотографий (сайт использует оптимизированные копии из assets/images)
+/HM*
+/FL*
+/ART*
+
+# Локальные инструменты
+.claude/
+.vscode/
+.idea/
+node_modules/
+
+# Временные файлы и кэши
+*.log
+*.tmp
+*.bak
+.cache/
+.DS_Store
+Thumbs.db
+desktop.ini

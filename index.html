@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dilyyas Bday — Birthday Wishlist</title>
+  <meta name="description" content="Dilyyas Bday — birthday wishlist: подарки своими руками, цветы, картины и деньги.">
+  <meta name="theme-color" content="#FFF8FA">
+  <meta property="og:title" content="Dilyyas Bday">
+  <meta property="og:description" content="Birthday Wishlist">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/flowers/fl-01-sm.jpg">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#wishlist">К списку пожеланий</a>
+
+  <main>
+    <!-- 01 — HERO -->
+    <header class="hero" id="top">
+      <div class="hero__inner container">
+        <div class="hero__text">
+          <p class="eyebrow hero__eyebrow" data-tagline>Birthday Wishlist</p>
+          <h1 class="hero__title" data-title>
+            <span class="hero__line">Dilyyas</span>
+            <span class="hero__line hero__line--italic">Bday</span>
+          </h1>
+          <p class="hero__note">
+            <span class="hero__rule" aria-hidden="true"></span>
+            <span>Подарки своими руками · Цветы · Картины · Деньги</span>
+          </p>
+        </div>
+
+        <figure class="hero__photo" data-hero-photo>
+          <div class="hero__frame">
+            <div class="hero__placeholder" data-hero-placeholder>
+              <svg class="hero__placeholder-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="6" y="10" width="36" height="28" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                <circle cx="24" cy="24" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M15 10l3-4h12l3 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+              <span>Photo placeholder</span>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <a class="scroll-cue" href="#wishlist" aria-label="Перейти к списку пожеланий">
+        <span class="scroll-cue__label">Scroll</span>
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+      </a>
+    </header>
+
+    <!-- 02 — WISHLIST INTRO -->
+    <section class="intro" id="wishlist" aria-labelledby="intro-title">
+      <div class="container intro__inner">
+        <span class="ornament reveal" aria-hidden="true">
+          <svg viewBox="0 0 120 20"><path d="M0 10h48M72 10h48" stroke="currentColor" stroke-width="1"/><path d="M60 3c3 4 3 10 0 14c-3-4-3-10 0-14z M53 10c4-3 10-3 14 0c-4 3-10 3-14 0z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        </span>
+        <h2 class="intro__title reveal" id="intro-title" data-intro-title>My <em>Birthday</em> Wishlist</h2>
+        <p class="intro__text reveal" data-intro-text>Небольшая галерея идей для подарка — четыре раздела, листайте вниз.</p>
+        <nav class="contents reveal" aria-label="Разделы">
+          <ol class="contents__list" data-contents></ol>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 03–06 — КАТЕГОРИИ (рендерятся из js/content.js) -->
+    <div data-categories></div>
+  </main>
+
+  <!-- 07 — FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="ornament" aria-hidden="true">
+        <svg viewBox="0 0 120 20"><path d="M0 10h48M72 10h48" stroke="currentColor" stroke-width="1"/><path d="M60 3c3 4 3 10 0 14c-3-4-3-10 0-14z M53 10c4-3 10-3 14 0c-4 3-10 3-14 0z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      </span>
+      <p class="footer__title" data-footer-title>Dilyyas <em>Bday</em></p>
+      <p class="footer__note" data-footer-note>Made with love</p>
+      <a class="footer__top" href="#top">Наверх <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <!-- Просмотр фото -->
+  <dialog class="lightbox" data-lightbox aria-label="Просмотр фотографии">
+    <div class="lightbox__stage">
+      <img class="lightbox__img" data-lightbox-img alt="">
+    </div>
+    <div class="lightbox__bar">
+      <button class="lightbox__btn" type="button" data-lightbox-prev aria-label="Предыдущее фото">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
+      <button class="lightbox__btn" type="button" data-lightbox-next aria-label="Следующее фото">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </dialog>
+
+  <noscript><p class="noscript">Для отображения фотографий включите JavaScript.</p></noscript>
+
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
