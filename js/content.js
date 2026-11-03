@@ -7,11 +7,14 @@ window.WISHLIST = {
   title: "Dilyyas Bday",
   tagline: "Birthday Wishlist",
 
-  // Главное фото. Пока src пустой, показывается графитовая заглушка.
-  // Пример: src: "assets/images/hero/dilya.jpg"
+  // Главное фото. Если src пустой, показывается графитовая заглушка.
+  // srcSmall — уменьшенная копия для телефонов (необязательно).
   heroPhoto: {
-    src: "",
-    alt: "Диля"
+    src: "assets/images/hero/dila.jpg",
+    srcSmall: "assets/images/hero/dila-sm.jpg",
+    width: 960,
+    height: 1287,
+    alt: "Диля на улице города"
   },
 
   intro: {
@@ -68,6 +71,9 @@ window.WISHLIST = {
       title: "Деньги",
       layout: "envelope",
       text: "Конверт с тёплыми словами — тоже прекрасный подарок.",
+      // Номер внутри конверта; по нажатию копируется
+      phone: "+7 777 406 4550",
+      phoneLabel: "Kaspi перевод",
       items: []
     }
   ],

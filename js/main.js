@@ -59,10 +59,17 @@
     var frame = document.querySelector(".hero__frame");
     var placeholder = document.querySelector("[data-hero-placeholder]");
     var heroImg = el("img", "hero__img");
+    if (hero.width && hero.height) {
+      heroImg.width = hero.width;
+      heroImg.height = hero.height;
+    }
+    if (hero.srcSmall) {
+      heroImg.srcset = hero.srcSmall + " 640w, " + hero.src + " " + (hero.width || 960) + "w";
+      heroImg.sizes = "(min-width: 768px) 440px, 72vw";
+    }
     heroImg.src = hero.src;
     heroImg.alt = hero.alt || "";
     heroImg.fetchPriority = "high";
-    heroImg.decoding = "async";
     heroImg.addEventListener("load", function () { frame.classList.add("has-photo"); });
     heroImg.addEventListener("error", function () { heroImg.remove(); });
     frame.insertBefore(heroImg, placeholder);
@@ -179,24 +186,83 @@
   function renderEnvelope(cat) {
     var wrap = el("div", "money reveal");
     wrap.innerHTML =
-      '<div class="envelope" aria-hidden="true">' +
-        '<div class="envelope__back"></div>' +
-        '<div class="envelope__flap"></div>' +
+      '<div class="envelope">' +
+        '<div class="envelope__back" aria-hidden="true"></div>' +
+        '<div class="envelope__flap" aria-hidden="true"></div>' +
         '<div class="envelope__card">' +
-          '<span class="envelope__card-kicker">for you</span>' +
+          '<span class="envelope__card-kicker"></span>' +
           '<span class="envelope__card-title"></span>' +
-          '<span class="envelope__card-line"></span>' +
+          '<span class="envelope__card-line" aria-hidden="true"></span>' +
         '</div>' +
-        '<div class="envelope__front"></div>' +
-        '<div class="envelope__seal"><span></span></div>' +
+        '<div class="envelope__front" aria-hidden="true"></div>' +
+        '<div class="envelope__seal" aria-hidden="true"><span></span></div>' +
       '</div>';
-    wrap.querySelector(".envelope__card-title").textContent = data.title;
     wrap.querySelector(".envelope__seal span").textContent = t.first.charAt(0);
+
+    var card = wrap.querySelector(".envelope__card");
+    var kickerEl = wrap.querySelector(".envelope__card-kicker");
+    var titleEl = wrap.querySelector(".envelope__card-title");
+
+    if (cat.phone) {
+      card.classList.add("envelope__card--phone");
+      kickerEl.textContent = cat.phoneLabel || "";
+      titleEl.remove();
+
+      var phoneBtn = el("button", "envelope__phone");
+      phoneBtn.type = "button";
+      phoneBtn.textContent = cat.phone;
+      phoneBtn.setAttribute("aria-label", (cat.phoneLabel ? cat.phoneLabel + ": " : "") + cat.phone + ". Нажмите, чтобы скопировать номер");
+
+      var hint = el("span", "envelope__hint", "нажмите, чтобы скопировать");
+      hint.setAttribute("aria-live", "polite");
+
+      card.insertBefore(phoneBtn, card.querySelector(".envelope__card-line"));
+      card.appendChild(hint);
+
+      var resetTimer;
+      phoneBtn.addEventListener("click", function () {
+        copyText(cat.phone.replace(/[^\d+]/g, ""), function (ok) {
+          hint.textContent = ok ? "номер скопирован" : "скопируйте номер вручную";
+          card.classList.toggle("is-copied", ok);
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(function () {
+            hint.textContent = "нажмите, чтобы скопировать";
+            card.classList.remove("is-copied");
+          }, 2400);
+        });
+      });
+    } else {
+      kickerEl.textContent = "for you";
+      titleEl.textContent = data.title;
+      card.setAttribute("aria-hidden", "true");
+    }
 
     if (cat.text) {
       wrap.appendChild(el("p", "money__text", cat.text));
     }
     return wrap;
+  }
+
+  function copyText(text, done) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(legacyCopy(text)); });
+    } else {
+      done(legacyCopy(text));
+    }
+  }
+
+  function legacyCopy(text) {
+    var area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    area.remove();
+    return ok;
   }
 
   /* ---------- Плавное появление ---------- */

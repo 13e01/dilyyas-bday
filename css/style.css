@@ -684,6 +684,40 @@ a { color: inherit; }
   background: var(--pink);
 }
 
+/* номер телефона в открытке */
+.envelope__card--phone { gap: .3rem; padding-inline: .5rem; }
+
+.envelope__phone {
+  margin-top: .15rem;
+  padding: .2rem .5rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 4.8vw, 1.35rem);
+  font-weight: 500;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: .04em;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--text);
+  cursor: copy;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .3s var(--ease);
+}
+
+.envelope__hint {
+  font-size: .68rem;
+  letter-spacing: .06em;
+  color: var(--muted);
+  transition: color .3s var(--ease);
+}
+.envelope__card.is-copied .envelope__hint { color: var(--accent-ink); }
+
+@media (hover: hover) {
+  .envelope__phone:hover { color: var(--accent-ink); }
+}
+
 .envelope__front {
   bottom: 0;
   height: 100%;
